@@ -260,12 +260,7 @@
                     </div>
                 @endif
             </div>
-
-            <!-- Course Description Below Video -->
-            <div class="video-description">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                    <h3 class="description-title" style="margin-bottom: 0;">Về khóa học</h3>
-                    @if($currentLesson)
+             <div style="width: 100%; max-width: 700px; padding: 0 0px; margin-bottom: 10px; display: flex; justify-content: flex-end;">
                         <button id="markCompleteBtn" class="btn btn-sm"
                                 style="background: {{ $isCurrentLessonCompleted ?? false ? '#28a745' : 'var(--primary-color)' }}; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem;"
                                 data-lesson-id="{{ $currentLesson->id }}"
@@ -273,6 +268,12 @@
                             <i class="fas fa-check-circle me-1"></i>
                             <span id="markCompleteText">{{ $isCurrentLessonCompleted ?? false ? 'Đã hoàn thành' : 'Đánh dấu hoàn thành' }}</span>
                         </button>
+             </div>
+            <!-- Course Description Below Video -->
+            <div class="video-description">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                    <h3 class="description-title" style="margin-bottom: 0;">Về khóa học</h3>
+                    @if($currentLesson)
                     @endif
                 </div>
                 <p class="description-text">{{ $course->description ?? 'Tổng quan về khóa học ' . $course->title }}</p>
