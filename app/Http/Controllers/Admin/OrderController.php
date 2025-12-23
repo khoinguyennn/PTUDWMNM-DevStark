@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -84,12 +85,83 @@ class OrderController extends Controller
             'status' => 'required|in:pending,paid,completed,cancelled'
         ]);
 
+        $statusNames = [
+            'pending' => 'Chờ thanh toán',
+            'paid' => 'Đã thanh toán',
+            'completed' => 'Hoàn thành',
+            'cancelled' => 'Đã hủy'
+        ];
+
         $oldStatus = $order->status;
-        $order->update(['status' => $request->status]);
+        $newStatus = $request->status;
+        
+        try {
+            DB::beginTransaction();
 
-        flash()->success("Trạng thái đơn hàng đã được cập nhật từ '{$oldStatus}' thành '{$request->status}'.");
+            // Check if status change requires enrollment action
+            $wasSuccessful = in_array($oldStatus, ['paid', 'completed']);
+            $isNowSuccessful = in_array($newStatus, ['paid', 'completed']);
 
-        return redirect()->back();
+            // Case 1: Changed from cancelled/pending to paid/completed - Add enrollments
+            if (!$wasSuccessful && $isNowSuccessful) {
+                $order->load('orderItems.course');
+                foreach ($order->orderItems as $item) {
+                    // Check if enrollment already exists
+                    $exists = DB::table('course_enrollments')
+                        ->where('user_id', $order->user_id)
+                        ->where('course_id', $item->course_id)
+                        ->exists();
+
+                    if (!$exists) {
+                        DB::table('course_enrollments')->insert([
+                            'user_id' => $order->user_id,
+                            'course_id' => $item->course_id,
+                            'enrolled_at' => now(),
+                            'created_at' => now()
+                        ]);
+                    }
+                }
+            }
+
+            // Case 2: Changed from paid/completed to pending/cancelled - Remove enrollments
+            if ($wasSuccessful && !$isNowSuccessful) {
+                $order->load('orderItems.course');
+                foreach ($order->orderItems as $item) {
+                    // Delete user progress for this course
+                    DB::table('user_progress')
+                        ->whereIn('lesson_id', function($query) use ($item) {
+                            $query->select('lessons.id')
+                                  ->from('lessons')
+                                  ->join('sections', 'lessons.section_id', '=', 'sections.id')
+                                  ->where('sections.course_id', $item->course_id);
+                        })
+                        ->where('user_id', $order->user_id)
+                        ->delete();
+
+                    // Delete enrollment
+                    DB::table('course_enrollments')
+                        ->where('user_id', $order->user_id)
+                        ->where('course_id', $item->course_id)
+                        ->delete();
+                }
+            }
+
+            // Update order status
+            $order->update(['status' => $newStatus]);
+
+            DB::commit();
+
+            $oldStatusName = $statusNames[$oldStatus] ?? $oldStatus;
+            $newStatusName = $statusNames[$newStatus] ?? $newStatus;
+
+            return redirect()->back()
+                ->with('swal_success', "Trạng thái đơn hàng đã được cập nhật từ {$oldStatusName} thành {$newStatusName}.");
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()
+                ->with('swal_error', 'Có lỗi xảy ra khi cập nhật trạng thái đơn hàng.');
+        }
     }
 
     /**
@@ -99,8 +171,8 @@ class OrderController extends Controller
     {
         // Only allow deletion of cancelled orders
         if ($order->status !== 'cancelled') {
-            flash()->error('Chỉ có thể xóa đơn hàng đã bị hủy.');
-            return redirect()->back();
+            return redirect()->back()
+                ->with('swal_error', 'Chỉ có thể xóa đơn hàng đã bị hủy.');
         }
 
         $orderCode = $order->order_code ?? $order->id;
@@ -113,8 +185,7 @@ class OrderController extends Controller
         
         $order->delete();
 
-        flash()->success("Đơn hàng #{$orderCode} đã được xóa thành công.");
-
-        return redirect()->route('admin.orders.index');
+        return redirect()->route('admin.orders.index')
+            ->with('swal_success', "Đơn hàng #{$orderCode} đã được xóa thành công.");
     }
 }

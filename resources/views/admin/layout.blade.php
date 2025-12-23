@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Flasher Toastr CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/flasher/toastr.min.css') }}">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
         :root {
@@ -219,12 +221,18 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Flasher Toastr JS -->
     <script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
     <script src="{{ asset('vendor/flasher/toastr.min.js') }}"></script>
 
     <!-- Render Flasher notifications -->
     @flasher_render
+
+    <!-- Include SweetAlert -->
+    @include('sweetalert::alert')
 
     @stack('scripts')
 </body>

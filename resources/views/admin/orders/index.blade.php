@@ -4,6 +4,35 @@
 @section('page-title', 'Quản lý Đơn hàng')
 
 @section('content')
+    @if(session('swal_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công!',
+                text: '{{ session('swal_success') }}',
+                timer: 3000,
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
+    @if(session('swal_error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi!',
+                text: '{{ session('swal_error') }}',
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
     <!-- Statistics Cards -->
     <div class="row mb-4">
         <div class="col-xl-3 col-md-6 mb-3">
@@ -233,7 +262,6 @@
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#" onclick="updateStatus({{ $order->id }}, 'pending')">Chờ thanh toán</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="updateStatus({{ $order->id }}, 'paid')">Đã thanh toán</a></li>
-                                            <li><a class="dropdown-item" href="#" onclick="updateStatus({{ $order->id }}, 'completed')">Hoàn thành</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="updateStatus({{ $order->id }}, 'cancelled')">Đã hủy</a></li>
                                         </ul>
                                     </div>
@@ -427,27 +455,62 @@
 @push('scripts')
 <script>
     function updateStatus(orderId, status) {
-        if (confirm('Bạn có chắc chắn muốn cập nhật trạng thái đơn hàng này?')) {
-            const form = document.getElementById('updateStatusForm');
-            const statusInput = document.getElementById('statusInput');
-            
-            form.action = `/admin/orders/${orderId}/status`;
-            statusInput.value = status;
-            form.submit();
-        }
+        const statusText = {
+            'pending': 'Chờ thanh toán',
+            'paid': 'Đã thanh toán',
+            'completed': 'Hoàn thành',
+            'cancelled': 'Đã hủy'
+        };
+
+        Swal.fire({
+            title: 'Xác nhận cập nhật?',
+            html: `Bạn có chắc chắn muốn cập nhật trạng thái đơn hàng thành<br><strong>"${statusText[status]}"</strong>?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#4e73df',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: '<i class="fas fa-check me-2"></i>Cập nhật',
+            cancelButtonText: '<i class="fas fa-times me-2"></i>Hủy',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('updateStatusForm');
+                const statusInput = document.getElementById('statusInput');
+                
+                form.action = `/admin/orders/${orderId}/status`;
+                statusInput.value = status;
+                form.submit();
+            }
+        });
     }
 
     function deleteOrder(orderId) {
-        if (confirm('Bạn có chắc chắn muốn xóa đơn hàng này? Hành động này không thể hoàn tác!')) {
-            const form = document.getElementById('deleteForm');
-            form.action = `/admin/orders/${orderId}`;
-            form.submit();
-        }
+        Swal.fire({
+            title: 'Xác nhận xóa?',
+            html: 'Bạn có chắc chắn muốn xóa đơn hàng này?<br><strong>Hành động này không thể hoàn tác!</strong>',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: '<i class="fas fa-trash me-2"></i>Xóa',
+            cancelButtonText: '<i class="fas fa-times me-2"></i>Hủy',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('deleteForm');
+                form.action = `/admin/orders/${orderId}`;
+                form.submit();
+            }
+        });
     }
 
     function exportOrders() {
-        // Add export functionality here
-        alert('Tính năng xuất Excel sẽ được phát triển trong phiên bản tiếp theo.');
+        Swal.fire({
+            icon: 'info',
+            title: 'Thông báo',
+            text: 'Tính năng xuất Excel sẽ được phát triển trong phiên bản tiếp theo.',
+            confirmButtonColor: '#4e73df'
+        });
     }
 </script>
 @endpush

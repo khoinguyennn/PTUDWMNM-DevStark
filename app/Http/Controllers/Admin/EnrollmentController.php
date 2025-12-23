@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EnrollmentController extends Controller
 {
@@ -117,7 +118,7 @@ class EnrollmentController extends Controller
             if ($existingEnrollment) {
                 return redirect()->back()
                     ->withInput()
-                    ->with('error', 'Học viên đã được ghi danh vào khóa học này rồi');
+                    ->with('swal_error', 'Học viên đã được ghi danh vào khóa học này rồi');
             }
 
             // Add to course_enrollments table
@@ -131,14 +132,14 @@ class EnrollmentController extends Controller
             DB::commit();
 
             return redirect()->route('admin.enrollments.index')
-                ->with('success', 'Đã ghi danh học viên thành công');
+                ->with('swal_success', 'Đã ghi danh học viên thành công');
 
         } catch (\Exception $e) {
             DB::rollback();
             \Log::error('Enrollment creation failed: ' . $e->getMessage());
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Có lỗi xảy ra khi ghi danh: ' . $e->getMessage());
+                ->with('swal_error', 'Có lỗi xảy ra khi ghi danh: ' . $e->getMessage());
         }
     }
 
@@ -163,7 +164,7 @@ class EnrollmentController extends Controller
 
         if (!$enrollment) {
             return redirect()->route('admin.enrollments.index')
-                ->with('error', 'Không tìm thấy thông tin ghi danh');
+                ->with('swal_error', 'Không tìm thấy thông tin ghi danh');
         }
 
         // Get user progress if available
@@ -200,7 +201,7 @@ class EnrollmentController extends Controller
 
             if (!$enrollment) {
                 return redirect()->route('admin.enrollments.index')
-                    ->with('error', 'Không tìm thấy thông tin ghi danh');
+                    ->with('swal_error', 'Không tìm thấy thông tin ghi danh');
             }
 
             // Delete user progress for this course
@@ -223,12 +224,12 @@ class EnrollmentController extends Controller
             DB::commit();
 
             return redirect()->route('admin.enrollments.index')
-                ->with('success', 'Đã hủy ghi danh thành công');
+                ->with('swal_success', 'Đã hủy ghi danh thành công');
 
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('admin.enrollments.index')
-                ->with('error', 'Có lỗi xảy ra khi hủy ghi danh');
+                ->with('swal_error', 'Có lỗi xảy ra khi hủy ghi danh');
         }
     }
 }

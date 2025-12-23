@@ -4,6 +4,35 @@
 @section('page-title', 'Quản lý Ghi danh')
 
 @section('content')
+    @if(session('swal_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công!',
+                text: '{{ session('swal_success') }}',
+                timer: 3000,
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
+    @if(session('swal_error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi!',
+                text: '{{ session('swal_error') }}',
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
 <div class="row mb-4">
     <!-- Statistics Cards -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -174,12 +203,12 @@
                                 <small class="text-muted">{{ $enrollment->enrollment_date->format('H:i') }}</small>
                             </td>
                             <td>
-                                <div class="btn-group btn-group-sm">
+                                <div class="btn-group" role="group">
                                     <a href="{{ route('admin.enrollments.show', [$enrollment->user_id, $enrollment->course_id]) }}" 
-                                       class="btn btn-outline-primary" title="Xem chi tiết">
+                                       class="btn btn-sm btn-info" title="Xem chi tiết">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <button type="button" class="btn btn-outline-danger" 
+                                    <button type="button" class="btn btn-sm btn-danger" 
                                             onclick="confirmDelete({{ $enrollment->user_id }}, {{ $enrollment->course_id }})"
                                             title="Hủy ghi danh">
                                         <i class="fas fa-trash"></i>
@@ -285,11 +314,23 @@
 @push('scripts')
 <script>
 function confirmDelete(userId, courseId) {
-    const deleteForm = document.getElementById('deleteForm');
-    deleteForm.action = `/admin/enrollments/${userId}/${courseId}`;
-    
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-    deleteModal.show();
+    Swal.fire({
+        title: 'Xác nhận hủy ghi danh?',
+        html: 'Bạn có chắc chắn muốn hủy ghi danh này?<br><strong>Tiến độ học tập sẽ bị xóa!</strong>',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash me-2"></i>Hủy ghi danh',
+        cancelButtonText: '<i class="fas fa-times me-2"></i>Hủy bỏ',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = `/admin/enrollments/${userId}/${courseId}`;
+            deleteForm.submit();
+        }
+    });
 }
 </script>
 @endpush

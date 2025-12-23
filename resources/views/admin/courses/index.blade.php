@@ -4,6 +4,35 @@
 @section('page-title', 'Quản lý Khóa học')
 
 @section('content')
+    @if(session('swal_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công!',
+                text: '{{ session('swal_success') }}',
+                timer: 3000,
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
+    @if(session('swal_error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi!',
+                text: '{{ session('swal_error') }}',
+                showConfirmButton: true,
+                confirmButtonColor: '#4e73df'
+            });
+        });
+    </script>
+    @endif
+
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <span><i class="fas fa-book me-2"></i>Danh sách Khóa học</span>
@@ -68,11 +97,13 @@
                                     </a>
                                     <form action="{{ route('admin.courses.destroy', $course) }}"
                                           method="POST"
-                                          style="display: inline;"
-                                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa khóa học này?');">
+                                          class="delete-form"
+                                          style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" title="Xóa">
+                                        <button type="button" class="btn btn-sm btn-danger delete-btn" 
+                                                data-course-title="{{ $course->title }}"
+                                                title="Xóa">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
@@ -94,10 +125,88 @@
 
             <!-- Pagination -->
             @if($courses->hasPages())
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $courses->links() }}
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div class="text-muted">
+                        Hiển thị {{ $courses->firstItem() }} đến {{ $courses->lastItem() }} 
+                        trong tổng số {{ $courses->total() }} kết quả
+                    </div>
+                    <nav aria-label="Phân trang khóa học">
+                        <ul class="pagination pagination-sm mb-0">
+                            {{-- Previous Page Link --}}
+                            @if ($courses->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">‹ Trước</span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $courses->previousPageUrl() }}">‹ Trước</a></li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @php
+                                $start = max($courses->currentPage() - 2, 1);
+                                $end = min($start + 4, $courses->lastPage());
+                                $start = max($end - 4, 1);
+                            @endphp
+
+                            @if($start > 1)
+                                <li class="page-item"><a class="page-link" href="{{ $courses->url(1) }}">1</a></li>
+                                @if($start > 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                            @endif
+
+                            @for ($i = $start; $i <= $end; $i++)
+                                @if ($i == $courses->currentPage())
+                                    <li class="page-item active"><span class="page-link">{{ $i }}</span></li>
+                                @else
+                                    <li class="page-item"><a class="page-link" href="{{ $courses->url($i) }}">{{ $i }}</a></li>
+                                @endif
+                            @endfor
+
+                            @if($end < $courses->lastPage())
+                                @if($end < $courses->lastPage() - 1)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                                <li class="page-item"><a class="page-link" href="{{ $courses->url($courses->lastPage()) }}">{{ $courses->lastPage() }}</a></li>
+                            @endif
+
+                            {{-- Next Page Link --}}
+                            @if ($courses->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $courses->nextPageUrl() }}">Tiếp ›</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">Tiếp ›</span></li>
+                            @endif
+                        </ul>
+                    </nav>
                 </div>
             @endif
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        // SweetAlert confirmation for delete
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const courseTitle = this.getAttribute('data-course-title');
+                const form = this.closest('.delete-form');
+                
+                Swal.fire({
+                    title: 'Xác nhận xóa?',
+                    html: `Bạn có chắc chắn muốn xóa khóa học<br><strong>"${courseTitle}"</strong>?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: '<i class="fas fa-trash me-2"></i>Xóa',
+                    cancelButtonText: '<i class="fas fa-times me-2"></i>Hủy',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+    @endpush
 @endsection

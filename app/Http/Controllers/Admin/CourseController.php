@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CourseController extends Controller
 {
@@ -43,8 +44,10 @@ class CourseController extends Controller
 
         Course::create($validated);
 
+        // Alert::success('Thành công!', 'Khóa học đã được tạo thành công!');
+        
         return redirect()->route('admin.courses.index')
-            ->with('success', 'Khóa học đã được tạo thành công!');
+            ->with('swal_success', 'Khóa học đã được tạo thành công!');
     }
 
     public function edit(Course $course)
@@ -76,7 +79,7 @@ class CourseController extends Controller
         $course->update($validated);
 
         return redirect()->route('admin.courses.index')
-            ->with('success', 'Khóa học đã được cập nhật thành công!');
+            ->with('swal_success', 'Khóa học đã được cập nhật thành công!');
     }
 
     public function destroy(Course $course)
@@ -88,8 +91,8 @@ class CourseController extends Controller
 
         $course->delete();
 
-        flash()->success('Khóa học đã được xóa thành công!');
-        return redirect()->route('admin.courses.index');
+        return redirect()->route('admin.courses.index')
+            ->with('swal_success', 'Khóa học đã được xóa thành công!');
     }
 
     public function show(Course $course)

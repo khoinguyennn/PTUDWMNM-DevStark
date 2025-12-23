@@ -34,7 +34,7 @@ class UserController extends Controller
         User::create($validated);
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Người dùng đã được tạo thành công!');
+            ->with('swal_success', 'Người dùng đã được tạo thành công!');
     }
 
     public function edit(User $user)
@@ -60,14 +60,32 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Người dùng đã được cập nhật thành công!');
+            ->with('swal_success', 'Người dùng đã được cập nhật thành công!');
     }
 
     public function destroy(User $user)
     {
+        // Check if user has orders
+        if ($user->orders()->exists()) {
+            return redirect()->route('admin.users.index')
+                ->with('swal_error', 'Không thể xóa người dùng này vì còn đơn hàng liên quan. Vui lòng xóa các đơn hàng trước.');
+        }
+
+        // Check if user has course enrollments
+        if ($user->courseEnrollments()->exists()) {
+            return redirect()->route('admin.users.index')
+                ->with('swal_error', 'Không thể xóa người dùng này vì đang tham gia khóa học. Vui lòng hủy đăng ký khóa học trước.');
+        }
+
+        // Check if user is an instructor with courses
+        if ($user->role === 'instructor' && $user->courses()->exists()) {
+            return redirect()->route('admin.users.index')
+                ->with('swal_error', 'Không thể xóa giảng viên này vì đang có khóa học. Vui lòng chuyển khóa học cho giảng viên khác trước.');
+        }
+
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Người dùng đã được xóa thành công!');
+            ->with('swal_success', 'Người dùng đã được xóa thành công!');
     }
 }
