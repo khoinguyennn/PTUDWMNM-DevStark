@@ -71,7 +71,7 @@
             <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h3 class="section-subtitle">Nội dung khóa học</h3>
-                    <button class="btn btn-link text-danger" onclick="toggleAllSections()">
+                    <button class="btn btn-link text-danger text-decoration-none" onclick="toggleAllSections()">
                         <span id="toggleText">Mở rộng tất cả</span>
                     </button>
                 </div>
@@ -355,7 +355,7 @@ function confirmPayment() {
                     Swal.showLoading();
                 }
             });
-            
+
             // Submit form
             document.getElementById('enrollForm').submit();
         }
@@ -396,7 +396,7 @@ function confirmFreeEnroll() {
                     Swal.showLoading();
                 }
             });
-            
+
             // Submit form
             document.getElementById('enrollForm').submit();
         }

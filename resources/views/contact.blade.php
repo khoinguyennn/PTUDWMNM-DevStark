@@ -4,21 +4,32 @@
 
 @section('content')
 <!-- Contact Hero Section -->
-<section class="py-5 px-3 px-md-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center text-white">
-                <h1 class="display-4 fw-bold mb-3">Liên hệ với chúng tôi</h1>
-                <p class="lead mb-0">
-                    Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn
-                </p>
+<section class="hero-section">
+    <div class="hero-slide" style="background: var(--gradient-1);">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="hero-content animate-fade-in">
+                        <h1>Liên hệ với chúng tôi</h1>
+                        <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn</p>
+
+                        <div class="hero-buttons justify-content-center">
+                            <a href="#contact-form" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>Gửi tin nhắn
+                            </a>
+                            <a href="#faq-section" class="btn btn-outline-light">
+                                <i class="fas fa-question-circle me-2"></i>Câu hỏi thường gặp
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Contact Info Section -->
-<section class="py-5" style="background-color: #f8f9fa;">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;" id="contact-form">
     <div class="container">
         <div class="row g-4 mb-5">
             <div class="col-lg-4 col-md-6">
@@ -76,7 +87,7 @@
                 <div class="card course-card">
                     <div class="card-body p-4 p-md-5">
                         <h3 class="fw-bold mb-4 text-center">Gửi tin nhắn cho chúng tôi</h3>
-                        
+
                         <form id="contactForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -121,7 +132,7 @@
 </section>
 
 <!-- Social Media Section -->
-<section class="py-5">
+<section class="py-5 px-3 px-md-4">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-4">
@@ -160,7 +171,7 @@
 </section>
 
 <!-- Map Section (Optional) -->
-<section class="py-5" style="background-color: #f8f9fa;">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-4">
@@ -172,10 +183,10 @@
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="ratio ratio-21x9">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.324845163739!2d106.66408931533397!3d10.786834992311543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed23c0f0000%3A0x302510cc53c7a727!2zSOG7jWMgVmnhu4duIENodXnDqm4gTW9uIENpxaF1IENIT01!5e0!3m2!1svi!2s!4v1635000000000!5m2!1svi!2s" 
-                                style="border:0;" 
-                                allowfullscreen="" 
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.324845163739!2d106.66408931533397!3d10.786834992311543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed23c0f0000%3A0x302510cc53c7a727!2zSOG7jWMgVmnhu4duIENodXnDqm4gTW9uIENpxaF1IENIT01!5e0!3m2!1svi!2s!4v1635000000000!5m2!1svi!2s"
+                                style="border:0;"
+                                allowfullscreen=""
                                 loading="lazy">
                             </iframe>
                         </div>
@@ -187,7 +198,7 @@
 </section>
 
 <!-- FAQ Section -->
-<section class="py-5">
+<section class="py-5 px-3 px-md-4" id="faq-section">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
@@ -314,14 +325,14 @@
 <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         // Simple form validation
         const form = e.target;
         const formData = new FormData(form);
-        
+
         // Here you would typically send the data to your backend
         // For now, we'll just show a success message
-        
+
         alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
         form.reset();
     });

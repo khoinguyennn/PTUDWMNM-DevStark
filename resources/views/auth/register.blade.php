@@ -5,14 +5,14 @@
 @section('content')
 <div class="auth-content">
     <!-- Left Panel - Brand -->
-    <div class="auth-brand" style="background: var(--gradient-2);">
+    <div class="auth-brand" style="background: var(--gradient-1);">
         <div class="brand-logo">
             <img src="{{ asset('images/logo.jpg') }}" alt="DevStark Logo">
         </div>
-        
+
         <h1 class="brand-title">Tham gia DevStark</h1>
         <p class="brand-subtitle">Bắt đầu hành trình lập trình của bạn ngay hôm nay!</p>
-        
+
         <ul class="brand-features">
             <li>
                 <i class="fas fa-play-circle"></i>
@@ -46,7 +46,7 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            
+
             <!-- Name -->
             <div class="form-group">
                 <label for="name" class="form-label">Họ và tên</label>
@@ -54,11 +54,11 @@
                     <span class="input-group-text">
                         <i class="fas fa-user"></i>
                     </span>
-                    <input 
-                        type="text" 
-                        class="form-control @error('name') is-invalid @enderror" 
-                        id="name" 
-                        name="name" 
+                    <input
+                        type="text"
+                        class="form-control @error('name') is-invalid @enderror"
+                        id="name"
+                        name="name"
                         value="{{ old('name') }}"
                         placeholder="Nhập họ tên"
                         required
@@ -74,11 +74,11 @@
                     <span class="input-group-text">
                         <i class="fas fa-envelope"></i>
                     </span>
-                    <input 
-                        type="email" 
-                        class="form-control @error('email') is-invalid @enderror" 
-                        id="email" 
-                        name="email" 
+                    <input
+                        type="email"
+                        class="form-control @error('email') is-invalid @enderror"
+                        id="email"
+                        name="email"
                         value="{{ old('email') }}"
                         placeholder="Nhập email"
                         required
@@ -94,10 +94,10 @@
                     <span class="input-group-text">
                         <i class="fas fa-lock"></i>
                     </span>
-                    <input 
-                        type="password" 
-                        class="form-control @error('password') is-invalid @enderror" 
-                        id="password" 
+                    <input
+                        type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        id="password"
                         name="password"
                         placeholder="Mật khẩu (tối thiểu 6 ký tự)"
                         required
@@ -116,10 +116,10 @@
                     <span class="input-group-text">
                         <i class="fas fa-lock"></i>
                     </span>
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        id="password_confirmation" 
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password_confirmation"
                         name="password_confirmation"
                         placeholder="Nhập lại mật khẩu"
                         required
@@ -136,9 +136,9 @@
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
                     <label class="form-check-label" for="terms">
-                        Tôi đồng ý với 
-                        <a href="#" class="auth-link">Điều khoản dịch vụ</a> 
-                        và 
+                        Tôi đồng ý với
+                        <a href="#" class="auth-link">Điều khoản dịch vụ</a>
+                        và
                         <a href="#" class="auth-link">Chính sách bảo mật</a>
                     </label>
                 </div>

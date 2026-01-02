@@ -103,7 +103,7 @@
                                 <img src="{{ asset('images/logo.jpg') }}"
                                      alt="Community"
                                      class="img-fluid"
-                                     style="max-height: 300px;"
+                                     style="max-height: 200px; border-radius: 20px !important;"
                                      onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'%3E%3Crect fill=\'%23f0f0f0\' width=\'400\' height=\'300\'/%3E%3Cg fill=\'%23999\'%3E%3Ccircle cx=\'100\' cy=\'150\' r=\'40\'/%3E%3Ccircle cx=\'200\' cy=\'150\' r=\'40\'/%3E%3Ccircle cx=\'300\' cy=\'150\' r=\'40\'/%3E%3Cpath d=\'M80 200 Q 100 180, 120 200\' stroke=\'%23666\' fill=\'none\' stroke-width=\'2\'/%3E%3Cpath d=\'M180 200 Q 200 180, 220 200\' stroke=\'%23666\' fill=\'none\' stroke-width=\'2\'/%3E%3Cpath d=\'M280 200 Q 300 180, 320 200\' stroke=\'%23666\' fill=\'none\' stroke-width=\'2\'/%3E%3Ctext x=\'200\' y=\'50\' text-anchor=\'middle\' font-size=\'20\' fill=\'%23666\'%3ECommunity%3C/text%3E%3C/g%3E%3C/svg%3E'">
                             </div>
                         </div>

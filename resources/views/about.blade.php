@@ -4,41 +4,38 @@
 
 @section('content')
 <!-- About Hero Section -->
-<section class="py-5 px-3 px-md-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 text-white">
-                <h1 class="display-4 fw-bold mb-4">Về DevStark</h1>
-                <p class="lead mb-4">
-                    Nền tảng học lập trình trực tuyến hàng đầu Việt Nam, giúp hàng nghìn học viên 
-                    thành công trong sự nghiệp lập trình viên.
-                </p>
-                <div class="d-flex gap-3">
-                    <a href="{{ route('courses.all') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-graduation-cap me-2"></i>Khám phá khóa học
-                    </a>
-                    <a href="{{ route('blog.index') }}" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-newspaper me-2"></i>Bài viết
-                    </a>
+<section class="hero-section">
+    <div class="hero-slide" style="background: var(--gradient-1);">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="hero-content animate-fade-in">
+                        <h1>Về DevStark</h1>
+                        <p>Nền tảng học lập trình trực tuyến hàng đầu Việt Nam, giúp hàng nghìn học viên
+                        thành công trong sự nghiệp lập trình viên.</p>
+
+                        <div class="hero-buttons justify-content-center">
+                            <a href="{{ route('courses.all') }}" class="btn btn-primary">
+                                <i class="fas fa-graduation-cap me-2"></i>Khám phá khóa học
+                            </a>
+                            <a href="{{ route('blog.index') }}" class="btn btn-outline-light">
+                                <i class="fas fa-newspaper me-2"></i>Bài viết
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 text-center mt-4 mt-lg-0">
-                <img src="{{ asset('images/logo.jpg') }}" 
-                     alt="DevStark Logo" 
-                     class="img-fluid rounded shadow-lg"
-                     style="max-height: 300px;">
             </div>
         </div>
     </div>
 </section>
 
 <!-- Mission Section -->
-<section class="py-5" style="background-color: #f8f9fa;">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold">Sứ mệnh của chúng tôi</h2>
-                <p class="text-muted lead">
+                <h2 class="section-title">Sứ mệnh của chúng tôi</h2>
+                <p class="text-muted mb-4">
                     Mang đến cơ hội học tập lập trình chất lượng cao cho mọi người
                 </p>
             </div>
@@ -52,7 +49,7 @@
                         </div>
                         <h4 class="mb-3">Chất lượng đào tạo</h4>
                         <p class="text-muted">
-                            Các khóa học được thiết kế bài bản, từ cơ bản đến nâng cao, 
+                            Các khóa học được thiết kế bài bản, từ cơ bản đến nâng cao,
                             phù hợp với mọi trình độ học viên.
                         </p>
                     </div>
@@ -66,7 +63,7 @@
                         </div>
                         <h4 class="mb-3">Cộng đồng học tập</h4>
                         <p class="text-muted">
-                            Kết nối với hàng nghìn học viên khác, trao đổi kiến thức và 
+                            Kết nối với hàng nghìn học viên khác, trao đổi kiến thức và
                             cùng nhau phát triển.
                         </p>
                     </div>
@@ -80,7 +77,7 @@
                         </div>
                         <h4 class="mb-3">Định hướng nghề nghiệp</h4>
                         <p class="text-muted">
-                            Hỗ trợ định hướng lộ trình học tập và phát triển sự nghiệp 
+                            Hỗ trợ định hướng lộ trình học tập và phát triển sự nghiệp
                             trong ngành công nghệ.
                         </p>
                     </div>
@@ -91,35 +88,51 @@
 </section>
 
 <!-- Statistics Section -->
-<section class="py-5">
+<section class="py-5 px-3 px-md-4">
     <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Thành tựu của chúng tôi</h2>
+                <p class="text-muted mb-4">
+                    Con số ấn tượng minh chứng cho sự phát triển của DevStark
+                </p>
+            </div>
+        </div>
         <div class="row text-center g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="p-4">
-                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                    <h2 class="fw-bold mb-2">10,000+</h2>
-                    <p class="text-muted">Học viên</p>
+                <div class="card course-card h-100 border-0">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h2 class="fw-bold mb-2">10,000+</h2>
+                        <p class="text-muted mb-0">Học viên</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="p-4">
-                    <i class="fas fa-book fa-3x text-success mb-3"></i>
-                    <h2 class="fw-bold mb-2">100+</h2>
-                    <p class="text-muted">Khóa học</p>
+                <div class="card course-card h-100 border-0">
+                    <div class="card-body p-4">
+                        <i class="fas fa-book fa-3x text-success mb-3"></i>
+                        <h2 class="fw-bold mb-2">100+</h2>
+                        <p class="text-muted mb-0">Khóa học</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="p-4">
-                    <i class="fas fa-chalkboard-teacher fa-3x text-warning mb-3"></i>
-                    <h2 class="fw-bold mb-2">50+</h2>
-                    <p class="text-muted">Giảng viên</p>
+                <div class="card course-card h-100 border-0">
+                    <div class="card-body p-4">
+                        <i class="fas fa-chalkboard-teacher fa-3x text-warning mb-3"></i>
+                        <h2 class="fw-bold mb-2">50+</h2>
+                        <p class="text-muted mb-0">Giảng viên</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="p-4">
-                    <i class="fas fa-star fa-3x text-danger mb-3"></i>
-                    <h2 class="fw-bold mb-2">4.8/5</h2>
-                    <p class="text-muted">Đánh giá</p>
+                <div class="card course-card h-100 border-0">
+                    <div class="card-body p-4">
+                        <i class="fas fa-star fa-3x text-danger mb-3"></i>
+                        <h2 class="fw-bold mb-2">4.8/5</h2>
+                        <p class="text-muted mb-0">Đánh giá</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,11 +140,14 @@
 </section>
 
 <!-- Why Choose Us Section -->
-<section class="py-5" style="background-color: #f8f9fa;">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold">Tại sao chọn DevStark?</h2>
+                <h2 class="section-title">Tại sao chọn DevStark?</h2>
+                <p class="text-muted mb-4">
+                    Những lợi thế vượt trội khi học tập tại DevStark
+                </p>
             </div>
         </div>
         <div class="row g-4">
@@ -218,12 +234,12 @@
 </section>
 
 <!-- Team Section -->
-<section class="py-5">
+<section class="py-5 px-3 px-md-4">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold">Đội ngũ của chúng tôi</h2>
-                <p class="text-muted lead">
+                <h2 class="section-title">Đội ngũ của chúng tôi</h2>
+                <p class="text-muted mb-4">
                     Những người đam mê công nghệ và giáo dục
                 </p>
             </div>
@@ -262,8 +278,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card course-card h-100 text-center">
                     <div class="card-body p-4">
-                        <img src="{{ $member['avatar'] }}" 
-                             alt="{{ $member['name'] }}" 
+                        <img src="{{ $member['avatar'] }}"
+                             alt="{{ $member['name'] }}"
                              class="rounded-circle mb-3"
                              style="width: 120px; height: 120px; object-fit: cover;">
                         <h5 class="mb-1">{{ $member['name'] }}</h5>
@@ -278,20 +294,20 @@
 </section>
 
 <!-- Contact CTA Section -->
-<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<section class="py-5 px-3 px-md-4" style="background: var(--gradient-1);">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center text-white">
                 <h2 class="mb-4">Sẵn sàng bắt đầu hành trình học tập?</h2>
-                <p class="lead mb-4">
-                    Tham gia cùng hàng nghìn học viên đã và đang học tập tại DevStark. 
+                <p class="mb-4" style="font-size: 1.1rem;">
+                    Tham gia cùng hàng nghìn học viên đã và đang học tập tại DevStark.
                     Bắt đầu ngay hôm nay và thay đổi tương lai của bạn!
                 </p>
                 <div class="d-flex gap-3 justify-content-center flex-wrap">
-                    <a href="{{ route('register') }}" class="btn btn-light btn-lg">
+                    <a href="{{ route('register') }}" class="btn btn-light btn-lg px-4">
                         <i class="fas fa-user-plus me-2"></i>Đăng ký ngay
                     </a>
-                    <a href="{{ route('courses.all') }}" class="btn btn-outline-light btn-lg">
+                    <a href="{{ route('courses.all') }}" class="btn btn-outline-light btn-lg px-4">
                         <i class="fas fa-book me-2"></i>Xem khóa học
                     </a>
                 </div>
@@ -320,6 +336,17 @@
         .display-4 {
             font-size: 2.5rem;
         }
+    }
+
+    /* Căn giữa section-title và thanh gạch dưới cho trang about */
+    .text-center .section-title {
+        display: inline-block;
+    }
+
+    .text-center .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
     }
 </style>
 @endpush

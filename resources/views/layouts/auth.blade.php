@@ -20,7 +20,7 @@
             --primary-color: #0BBAF4;
             --primary-dark: #5CB3D9;
             --secondary-color: #FF6B35;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-1: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --text-dark: #2c3e50;

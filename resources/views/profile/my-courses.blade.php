@@ -8,11 +8,6 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2><i class="fas fa-graduation-cap me-2"></i>Khóa học của tôi</h2>
-                <div class="d-flex gap-2">
-                    <a href="{{ route('home') }}" class="btn btn-primary">
-                        <i class="fas fa-search me-1"></i>Khám phá thêm
-                    </a>
-                </div>
             </div>
 
             @if($purchasedCourses->count() > 0)

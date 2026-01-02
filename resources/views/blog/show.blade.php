@@ -4,13 +4,13 @@
 
 @section('content')
 <!-- Blog Detail Section -->
-<section class="py-4 px-2 px-md-3">
+<div class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mx-auto">
+            <div class="col-lg-10 mx-auto">
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="font-size: 0.9rem;">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Bài viết</a></li>
                         <li class="breadcrumb-item active">Chi tiết bài viết</li>
@@ -20,9 +20,9 @@
                 <!-- Article Header -->
                 <div class="mb-4">
                     <span class="badge bg-primary mb-2">Lộ trình học</span>
-                    <h1 class="mb-3">Lộ trình học lập trình Frontend từ zero đến hero</h1>
-                    
-                    <div class="d-flex align-items-center text-muted mb-3">
+                    <h1 class="mb-3" style="font-size: 1.75rem;">Lộ trình học lập trình Frontend từ zero đến hero</h1>
+
+                    <div class="d-flex align-items-center text-muted mb-3" style="font-size: 0.875rem;">
                         <div class="me-4">
                             <i class="fas fa-user me-2"></i>Admin DevStark
                         </div>
@@ -40,23 +40,23 @@
 
                 <!-- Featured Image -->
                 <div class="mb-4">
-                    <img src="{{ asset('images/Banner_web_ReactJS.png') }}" 
-                         alt="Featured Image" 
+                    <img src="{{ asset('images/Banner_web_ReactJS.png') }}"
+                         alt="Featured Image"
                          class="img-fluid rounded"
-                         style="width: 100%; height: 400px; object-fit: cover;">
+                         style="width: 100%; height: 300px; object-fit: cover;">
                 </div>
 
                 <!-- Article Content -->
                 <div class="article-content">
                     <h2>Giới thiệu</h2>
                     <p>
-                        Lập trình Frontend là một trong những lĩnh vực thu hút nhiều người học lập trình nhất hiện nay. 
+                        Lập trình Frontend là một trong những lĩnh vực thu hút nhiều người học lập trình nhất hiện nay.
                         Với sự phát triển mạnh mẽ của công nghệ web, nhu cầu tuyển dụng lập trình viên Frontend ngày càng tăng cao.
                     </p>
 
                     <h2>Tại sao nên học Frontend?</h2>
                     <p>
-                        Frontend là phần giao diện mà người dùng tương tác trực tiếp, do đó vai trò của Frontend Developer rất quan trọng. 
+                        Frontend là phần giao diện mà người dùng tương tác trực tiếp, do đó vai trò của Frontend Developer rất quan trọng.
                         Dưới đây là một số lý do tại sao bạn nên học Frontend:
                     </p>
                     <ul>
@@ -67,7 +67,7 @@
                     </ul>
 
                     <h2>Lộ trình học Frontend chi tiết</h2>
-                    
+
                     <h3>1. Nền tảng cơ bản (2-3 tháng)</h3>
                     <p>
                         Bước đầu tiên, bạn cần nắm vững các kiến thức nền tảng:
@@ -122,37 +122,37 @@
 
                     <h2>Kết luận</h2>
                     <p>
-                        Học lập trình Frontend không khó, chỉ cần bạn có lộ trình rõ ràng và kiên trì thực hành. 
-                        Hy vọng bài viết này đã cung cấp cho bạn cái nhìn tổng quan về lộ trình học Frontend. 
+                        Học lập trình Frontend không khó, chỉ cần bạn có lộ trình rõ ràng và kiên trì thực hành.
+                        Hy vọng bài viết này đã cung cấp cho bạn cái nhìn tổng quan về lộ trình học Frontend.
                         Chúc bạn thành công trên con đường trở thành một Frontend Developer!
                     </p>
                 </div>
 
                 <!-- Tags -->
                 <div class="mt-5 mb-4">
-                    <h5 class="mb-3">Tags:</h5>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">Frontend</a>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">Lộ trình học</a>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">HTML</a>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">CSS</a>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">JavaScript</a>
-                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none">ReactJS</a>
+                    <h5 class="mb-3" style="font-size: 1.1rem;">Tags:</h5>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">Frontend</a>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">Lộ trình học</a>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">HTML</a>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">CSS</a>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">JavaScript</a>
+                    <a href="#" class="badge bg-secondary me-2 mb-2 text-decoration-none" style="font-size: 0.85rem;">ReactJS</a>
                 </div>
 
                 <!-- Share Buttons -->
                 <div class="mb-5 pb-5 border-bottom">
-                    <h5 class="mb-3">Chia sẻ bài viết:</h5>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-primary btn-sm">
+                    <h5 class="mb-3" style="font-size: 1.1rem;">Chia sẻ bài viết:</h5>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#" class="btn btn-primary d-inline-flex align-items-center" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 8px;">
                             <i class="fab fa-facebook-f me-2"></i>Facebook
                         </a>
-                        <a href="#" class="btn btn-info btn-sm text-white">
+                        <a href="#" class="btn btn-info text-white d-inline-flex align-items-center" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 8px;">
                             <i class="fab fa-twitter me-2"></i>Twitter
                         </a>
-                        <a href="#" class="btn btn-success btn-sm">
+                        <a href="#" class="btn btn-success d-inline-flex align-items-center" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 8px;">
                             <i class="fab fa-whatsapp me-2"></i>WhatsApp
                         </a>
-                        <a href="#" class="btn btn-secondary btn-sm">
+                        <a href="#" class="btn btn-secondary d-inline-flex align-items-center" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 8px;">
                             <i class="fas fa-link me-2"></i>Copy Link
                         </a>
                     </div>
@@ -160,19 +160,19 @@
 
                 <!-- Related Posts -->
                 <div class="mt-5">
-                    <h3 class="mb-4">Bài viết liên quan</h3>
+                    <h3 class="mb-4" style="font-size: 1.3rem;">Bài viết liên quan</h3>
                     <div class="row g-3">
                         @for($i = 1; $i <= 3; $i++)
                         <div class="col-md-4">
                             <a href="#" class="text-decoration-none">
                                 <div class="card h-100">
-                                    <img src="{{ asset('images/Banner_web_Javascript.png') }}" 
-                                         class="card-img-top" 
+                                    <img src="{{ asset('images/Banner_web_Javascript.png') }}"
+                                         class="card-img-top"
                                          alt="Related post"
                                          style="height: 150px; object-fit: cover;">
                                     <div class="card-body">
-                                        <h6 class="card-title">JavaScript ES6+ - Những tính năng bạn cần biết</h6>
-                                        <small class="text-muted">
+                                        <h6 class="card-title" style="font-size: 0.95rem;">JavaScript ES6+ - Những tính năng bạn cần biết</h6>
+                                        <small class="text-muted" style="font-size: 0.8rem;">
                                             <i class="fas fa-calendar-alt me-1"></i>28/11/2025
                                         </small>
                                     </div>
@@ -185,14 +185,14 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 @endsection
 
 @push('styles')
 <style>
     .article-content {
-        font-size: 1.1rem;
-        line-height: 1.8;
+        font-size: 1rem;
+        line-height: 1.7;
         color: #333;
     }
 
@@ -201,6 +201,7 @@
         margin-bottom: 1rem;
         color: #2c3e50;
         font-weight: 600;
+        font-size: 1.5rem;
     }
 
     .article-content h3 {
@@ -208,6 +209,7 @@
         margin-bottom: 0.8rem;
         color: #34495e;
         font-weight: 600;
+        font-size: 1.25rem;
     }
 
     .article-content p {

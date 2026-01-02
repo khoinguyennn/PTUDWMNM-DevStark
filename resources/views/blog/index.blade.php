@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Blog Section -->
-<section class="py-5 px-3 px-md-5" style="background-color: #f8f9fa;">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <!-- Header -->
         <div class="row">
@@ -103,7 +103,7 @@
 
                         <div class="course-body d-flex flex-column">
                             <div class="d-flex align-items-center mb-2">
-                                <span class="badge bg-primary me-2">{{ $post['category'] }}</span>
+                                <span class="badge bg-primary text-white me-2">{{ $post['category'] }}</span>
                                 <small class="text-muted">
                                     <i class="fas fa-calendar-alt me-1"></i>
                                     {{ \Carbon\Carbon::parse($post['date'])->format('d/m/Y') }}
@@ -111,7 +111,7 @@
                             </div>
 
                             <h5 class="course-title">{{ $post['title'] }}</h5>
-                            
+
                             <p class="text-muted mb-3" style="font-size: 0.9rem; line-height: 1.5;">
                                 {{ $post['excerpt'] }}
                             </p>
@@ -162,11 +162,14 @@
 </section>
 
 <!-- Categories Section -->
-<section class="py-5">
+<section class="py-5 px-3 px-md-4" style="background-color: #f8f9fa;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3 class="mb-4">Danh mục bài viết</h3>
+                <h2 class="section-title">Danh mục bài viết</h2>
+                <p class="text-muted mb-4">
+                    Khám phá các chủ đề lập trình và công nghệ được phân loại chi tiết.
+                </p>
             </div>
         </div>
         <div class="row g-3">
@@ -235,6 +238,7 @@
     .pagination .page-item.active .page-link {
         background-color: #007bff;
         border-color: #007bff;
+        color: white;
     }
 
     .pagination .page-link:hover {

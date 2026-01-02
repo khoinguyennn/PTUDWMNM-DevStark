@@ -693,29 +693,32 @@
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
-            color: white;
+            background: white;
+            color: var(--text-dark);
             padding: 2rem 0 1rem;
             margin-top: 3rem;
             margin-left: 0;
             width: 100%;
             position: relative;
             z-index: 50;
+            border-top: 1px solid #e9ecef;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
 
         .footer h5 {
-            color: white;
+            color: var(--text-dark);
             margin-bottom: 1rem;
             font-size: 1rem;
+            font-weight: 600;
         }
 
         .footer p {
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: var(--text-muted) !important;
             font-size: 14px;
         }
 
         .footer a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: 14px;
@@ -732,10 +735,10 @@
         }
 
         .footer-logo {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             background: var(--primary-color);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -747,7 +750,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
+        }
+
+        .footer hr {
+            border-color: #e9ecef;
+        }
+
+        .footer .fab,
+        .footer .fas {
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover .fab,
+        .footer a:hover .fas {
+            color: var(--primary-color);
         }
 
         /* Mobile menu toggle */
