@@ -16,7 +16,7 @@ class CourseController extends Controller
         $courses = Course::with('instructor', 'sections.lessons')
             ->latest()
             ->paginate(10);
-        
+
         return view('admin.courses.index', compact('courses'));
     }
 
@@ -45,7 +45,7 @@ class CourseController extends Controller
         Course::create($validated);
 
         // Alert::success('Thành công!', 'Khóa học đã được tạo thành công!');
-        
+
         return redirect()->route('admin.courses.index')
             ->with('swal_success', 'Khóa học đã được tạo thành công!');
     }
@@ -84,6 +84,26 @@ class CourseController extends Controller
 
     public function destroy(Course $course)
     {
+        // Kiểm tra xem khóa học đã có người mua chưa
+        $hasOrders = \DB::table('order_items')
+            ->where('course_id', $course->id)
+            ->exists();
+
+        if ($hasOrders) {
+            return redirect()->route('admin.courses.index')
+                ->with('swal_error', 'Không thể xóa khóa học này vì đã có học viên đăng ký!');
+        }
+
+        // Kiểm tra xem có học viên đã enroll chưa
+        $hasEnrollments = \DB::table('course_enrollments')
+            ->where('course_id', $course->id)
+            ->exists();
+
+        if ($hasEnrollments) {
+            return redirect()->route('admin.courses.index')
+                ->with('swal_error', 'Không thể xóa khóa học này vì đã có học viên đang học!');
+        }
+
         // Delete thumbnail
         if ($course->thumbnail) {
             Storage::disk('public')->delete($course->thumbnail);

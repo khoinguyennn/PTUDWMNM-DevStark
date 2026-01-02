@@ -39,11 +39,10 @@
                 </div>
 
                 <!-- Featured Image -->
-                <div class="mb-4">
-                    <img src="{{ asset('images/Banner_web_ReactJS.png') }}"
+                <div class="mb-4" align="center">
+                    <img src="{{ asset('images/post1.png') }}"
                          alt="Featured Image"
-                         class="img-fluid rounded"
-                         style="width: 100%; height: 300px; object-fit: cover;">
+                         style="width: 80%;">
                 </div>
 
                 <!-- Article Content -->

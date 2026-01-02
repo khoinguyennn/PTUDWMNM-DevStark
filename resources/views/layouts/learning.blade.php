@@ -107,11 +107,11 @@
         }
 
         /* Layout chính */
-        .learning-container {
-            display: flex;
-            height: 100vh;
-            padding-top: 60px;
-        }
+.learning-container {
+    display: flex;
+    height: calc(100vh - 60px); /* đúng chiều cao header */
+    margin-top: 60px;
+}
 
         /* Video player */
         .video-section {

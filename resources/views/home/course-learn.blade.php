@@ -35,6 +35,7 @@
         justify-content: flex-start;
         position: relative;
         max-height: none; /* Bỏ giới hạn chiều cao */
+        margin-right: 400px; /* đúng bằng width sidebar */
     }
 
     .video-player {
@@ -56,13 +57,19 @@
     }
 
     /* Course content sidebar */
-    .course-content-sidebar {
-        width: 400px;
-        background: white;
-        border-left: 1px solid #e9ecef;
-        overflow-y: auto;
-        height: calc(100vh - 70px);
-    }
+.course-content-sidebar {
+    width: 400px;
+    background: white;
+    border-left: 1px solid #e9ecef;
+
+    position: fixed;
+    top: 60px;        /* header */
+    right: 0;
+    bottom: 0;
+
+    overflow-y: auto;
+}
+
 
     .course-description {
         padding: 20px;
@@ -71,7 +78,7 @@
     }
 
     .video-description {
-        padding: 20px 20px;
+        padding: 0 80px;
         width: 100%;
         margin-top: 0;
     }
@@ -212,7 +219,6 @@
 @endpush
 
 @section('content')
-    <div class="learning-container">
         <!-- Video Section -->
         <div class="video-section">
             <!-- Course Title Above Video -->
@@ -260,6 +266,7 @@
                     </div>
                 @endif
             </div>
+            @if($currentLesson)
              <div style="width: 100%; max-width: 700px; padding: 0 0px; margin-bottom: 10px; display: flex; justify-content: flex-end;">
                         <button id="markCompleteBtn" class="btn btn-sm"
                                 style="background: {{ $isCurrentLessonCompleted ?? false ? '#28a745' : 'var(--primary-color)' }}; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem;"
@@ -269,6 +276,7 @@
                             <span id="markCompleteText">{{ $isCurrentLessonCompleted ?? false ? 'Đã hoàn thành' : 'Đánh dấu hoàn thành' }}</span>
                         </button>
              </div>
+            @endif
             <!-- Course Description Below Video -->
             <div class="video-description">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
