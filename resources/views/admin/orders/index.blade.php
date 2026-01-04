@@ -122,10 +122,10 @@
             <form method="GET" action="{{ route('admin.orders.index') }}" class="row g-3">
                 <div class="col-md-3">
                     <label for="search" class="form-label">Tìm kiếm</label>
-                    <input type="text" class="form-control" id="search" name="search" 
+                    <input type="text" class="form-control" id="search" name="search"
                            value="{{ request('search') }}" placeholder="Mã đơn, tên khách hàng, email...">
                 </div>
-                
+
                 <div class="col-md-2">
                     <label for="status" class="form-label">Trạng thái</label>
                     <select class="form-select" id="status" name="status">
@@ -151,13 +151,13 @@
 
                 <div class="col-md-2">
                     <label for="start_date" class="form-label">Từ ngày</label>
-                    <input type="date" class="form-control" id="start_date" name="start_date" 
+                    <input type="date" class="form-control" id="start_date" name="start_date"
                            value="{{ request('start_date') }}">
                 </div>
 
                 <div class="col-md-2">
                     <label for="end_date" class="form-label">Đến ngày</label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" 
+                    <input type="date" class="form-control" id="end_date" name="end_date"
                            value="{{ request('end_date') }}">
                 </div>
 
@@ -181,9 +181,9 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <span><i class="fas fa-list me-2"></i>Danh sách đơn hàng</span>
             <div class="d-flex gap-2">
-                <button class="btn btn-success btn-sm" onclick="exportOrders()">
+                <!-- <button class="btn btn-success btn-sm" onclick="exportOrders()">
                     <i class="fas fa-download me-1"></i>Xuất Excel
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="card-body">
@@ -249,13 +249,13 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.orders.show', $order) }}" 
+                                    <a href="{{ route('admin.orders.show', $order) }}"
                                        class="btn btn-sm btn-info" title="Xem chi tiết">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    
+
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" 
+                                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle"
                                                 data-bs-toggle="dropdown" title="Cập nhật trạng thái">
                                             <i class="fas fa-edit"></i>
                                         </button>
@@ -267,7 +267,7 @@
                                     </div>
 
                                     @if($order->status == 'cancelled')
-                                        <button type="button" class="btn btn-sm btn-danger" 
+                                        <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteOrder({{ $order->id }})" title="Xóa đơn hàng">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -291,7 +291,7 @@
             @if($orders->hasPages())
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <div class="text-muted">
-                        Hiển thị {{ $orders->firstItem() }} đến {{ $orders->lastItem() }} 
+                        Hiển thị {{ $orders->firstItem() }} đến {{ $orders->lastItem() }}
                         trong tổng số {{ $orders->total() }} kết quả
                     </div>
                     <nav aria-label="Phân trang đơn hàng">
@@ -384,7 +384,7 @@
         --bs-pagination-disabled-bg: #fff;
         --bs-pagination-disabled-border-color: #dee2e6;
     }
-    
+
     .pagination .page-link {
         position: relative;
         display: block;
@@ -394,14 +394,14 @@
         border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
-    
+
     .pagination .page-link:hover {
         z-index: 2;
         color: var(--bs-pagination-hover-color);
         background-color: var(--bs-pagination-hover-bg);
         border-color: var(--bs-pagination-hover-border-color);
     }
-    
+
     .pagination .page-link:focus {
         z-index: 3;
         color: var(--bs-pagination-focus-color);
@@ -409,42 +409,42 @@
         outline: 0;
         box-shadow: var(--bs-pagination-focus-box-shadow);
     }
-    
+
     .pagination .page-item:not(:first-child) .page-link {
         margin-left: -1px;
     }
-    
+
     .pagination .page-item.active .page-link {
         z-index: 3;
         color: var(--bs-pagination-active-color);
         background-color: var(--bs-pagination-active-bg);
         border-color: var(--bs-pagination-active-border-color);
     }
-    
+
     .pagination .page-item.disabled .page-link {
         color: var(--bs-pagination-disabled-color);
         pointer-events: none;
         background-color: var(--bs-pagination-disabled-bg);
         border-color: var(--bs-pagination-disabled-border-color);
     }
-    
+
     .pagination .page-item:first-child .page-link {
         border-top-left-radius: var(--bs-pagination-border-radius);
         border-bottom-left-radius: var(--bs-pagination-border-radius);
     }
-    
+
     .pagination .page-item:last-child .page-link {
         border-top-right-radius: var(--bs-pagination-border-radius);
         border-bottom-right-radius: var(--bs-pagination-border-radius);
     }
-    
+
     .pagination-sm {
         --bs-pagination-padding-x: 0.5rem;
         --bs-pagination-padding-y: 0.25rem;
         --bs-pagination-font-size: 0.75rem;
         --bs-pagination-border-radius: 0.2rem;
     }
-    
+
     /* Remove any unwanted SVG icons */
     .pagination .page-link svg {
         display: none !important;
@@ -476,7 +476,7 @@
             if (result.isConfirmed) {
                 const form = document.getElementById('updateStatusForm');
                 const statusInput = document.getElementById('statusInput');
-                
+
                 form.action = `/admin/orders/${orderId}/status`;
                 statusInput.value = status;
                 form.submit();

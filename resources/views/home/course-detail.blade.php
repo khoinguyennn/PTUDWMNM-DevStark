@@ -99,7 +99,7 @@
                                 <div class="lesson-item p-3 border-bottom d-flex justify-content-between align-items-center">
                                     <div class="lesson-info">
                                         <i class="fas fa-play-circle text-muted me-2"></i>
-                                        <span>{{ $loop->iteration }}. {{ $lesson->title }}</span>
+                                        <span>{{ $loop->parent->iteration }}.{{ $loop->iteration }}. {{ $lesson->title }}</span>
                                     </div>
                                     <div class="lesson-duration text-muted">
                                         {{ gmdate('i:s', $lesson->duration * 60) }}

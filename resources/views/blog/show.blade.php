@@ -161,16 +161,17 @@
                 <div class="mt-5">
                     <h3 class="mb-4" style="font-size: 1.3rem;">Bài viết liên quan</h3>
                     <div class="row g-3">
-                        @for($i = 1; $i <= 3; $i++)
+                        <!-- Post 1 -->
                         <div class="col-md-4">
                             <a href="#" class="text-decoration-none">
-                                <div class="card h-100">
-                                    <img src="{{ asset('images/Banner_web_Javascript.png') }}"
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <img src="{{ asset('images/post2.webp') }}"
                                          class="card-img-top"
-                                         alt="Related post"
+                                         alt="JavaScript ES6+"
                                          style="height: 150px; object-fit: cover;">
                                     <div class="card-body">
-                                        <h6 class="card-title" style="font-size: 0.95rem;">JavaScript ES6+ - Những tính năng bạn cần biết</h6>
+                                        <span class="badge bg-primary mb-2" style="font-size: 0.75rem;">JavaScript</span>
+                                        <h6 class="card-title text-dark" style="font-size: 0.95rem; font-weight: 600;">JavaScript ES6+ - Những tính năng bạn cần biết</h6>
                                         <small class="text-muted" style="font-size: 0.8rem;">
                                             <i class="fas fa-calendar-alt me-1"></i>28/11/2025
                                         </small>
@@ -178,7 +179,44 @@
                                 </div>
                             </a>
                         </div>
-                        @endfor
+
+                        <!-- Post 2 -->
+                        <div class="col-md-4">
+                            <a href="#" class="text-decoration-none">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <img src="{{ asset('images/post3.jpg') }}"
+                                         class="card-img-top"
+                                         alt="ReactJS Hooks"
+                                         style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <span class="badge bg-info mb-2" style="font-size: 0.75rem;">ReactJS</span>
+                                        <h6 class="card-title text-dark" style="font-size: 0.95rem; font-weight: 600;">Tìm hiểu về React Hooks và cách sử dụng hiệu quả</h6>
+                                        <small class="text-muted" style="font-size: 0.8rem;">
+                                            <i class="fas fa-calendar-alt me-1"></i>15/12/2025
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="col-md-4">
+                            <a href="#" class="text-decoration-none">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <img src="{{ asset('images/post1.png') }}"
+                                         class="card-img-top"
+                                         alt="Node.js Backend"
+                                         style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <span class="badge bg-success mb-2" style="font-size: 0.75rem;">Backend</span>
+                                        <h6 class="card-title text-dark" style="font-size: 0.95rem; font-weight: 600;">Xây dựng RESTful API với Node.js và Express</h6>
+                                        <small class="text-muted" style="font-size: 0.8rem;">
+                                            <i class="fas fa-calendar-alt me-1"></i>20/12/2025
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
